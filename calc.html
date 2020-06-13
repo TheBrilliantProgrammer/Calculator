@@ -1,0 +1,43 @@
+<head>
+  <link rel='stylesheet' href='style.css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script> 
+angular.module('CalculatorApp', [])
+  .controller('CalculatorController', function($scope) {
+      $scope.result = function() {
+        if ($scope.num1 !== NaN && $scope.num2 !== NaN){
+           if ($scope.operator == 'none') {
+               return 'Please select an operator';
+           }
+           if ($scope.operator == '+') {
+              return $scope.num1 + $scope.num2;
+           }
+           if ($scope.operator == '-') {
+              return $scope.num1 - $scope.num2;
+          }
+          if ($scope.operator == '*') {
+              return $scope.num1 * $scope.num2;
+          }
+          if ($scope.operator == '/') {
+              return $scope.num1 / $scope.num2;
+          }
+      };
+      
+    }
+    });
+  </script>
+  </head>
+ <body>
+<div ng-app="CalculatorApp" ng-controller="CalculatorController">
+  <p><input class='input' type="number" ng-model="num1"></p>
+  <p><input class='input' type="number" ng-model="num2"></p>
+  <p><select class='select' ng-model="operator" >
+        <option value="none" selected disabled>Select an Option</option> 
+        <option>+</option>
+        <option>*</option>
+        <option>-</option>
+        <option>/</option>
+     </select></p>
+  <p>Answer: {{result()}}</p>
+ </div>
+</body>
